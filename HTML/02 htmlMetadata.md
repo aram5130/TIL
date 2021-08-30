@@ -12,10 +12,13 @@ HTML은 제목, 단락, 목록 등과 같은 본문을 위한 구조적 의미�
 
   
 
+```
 참고자료
-
 1. https://ko.wikipedia.org/wiki/HTML
 2. https://developer.mozilla.org/ko/docs/Web/HTML
+```
+
+
 
 
 
@@ -43,5 +46,54 @@ HTML은 제목, 단락, 목록 등과 같은 본문을 위한 구조적 의미�
 
   
 
+### 메타데이터
 
+- 데이터를 설명하는 데이터 (데이터를 위한 데이터)
 
+  문서의 정보를 분류하는 것
+
+  
+
+  ###### title : 브라우저의 제목 표시줄 or 페이지 탭에 보이는 요소
+
+  ###### meta : 
+
+  ###### 			- 문자 인코딩(charset="UTF-8"), 
+
+  ###### 			- 문자 뷰포트(name="viewport") : 모바일 장치에서 사용
+
+  ```
+  참고자료
+  https://developer.mozilla.org/ko/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML
+  ```
+
+  
+
+  ###### mime Type : 외부에 있는 파일을 불러와서 경로를 지정할 때, 
+
+  ###### 						경로를 해석 할 수 있도록 하기위해 사용하는 것
+
+  ```
+  참고자료
+  https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+  ```
+
+  
+
+  ###### style : css문법을 사용해서 스타일을 적용
+
+  ```
+  참고자료
+  https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/style
+  ```
+
+  
+
+  ###### script : 데이터와 실행 가능한 코드를 문서에 포함할 때 사용하며 보통 JavaScript 코드와 함께 사용
+
+  ```
+  참고자료
+  https://developer.mozilla.org/ko/docs/Web/HTML/Element/script
+  ```
+
+  
