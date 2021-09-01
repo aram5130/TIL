@@ -125,3 +125,140 @@
   </table>
   ```
 
+
+
+## 임베디드 요소
+
+### 외부의 소스를 불러와서 삽입하는 것
+
+- `<img>`이미지 태그
+
+  닫는 태그가 없이 내부에 내용(소스)를 넣어서 사용
+
+  - src 특성은 필수, 포함하고자 하는 이미지의 경로를 지정 (절대경로, 상대경로)
+
+  ```html
+  <body>
+      <!-- 절대 경로 -->
+      <img src="https://cdn.pixabay.com/photo/2021/08/24/15/38/sand-6570980__340.jpg"
+           alt="흑백모래사진">
+      <!-- 상대 경로 -->  
+      <img src="image/01.jpg">
+  </body>
+  ```
+
+  - alt(Alternate) 대체 텍스트 속성
+
+    접근성을 높혀주는 속성, 네트워크 오류, 콘텐츠 차단 등의 문제로 이미지가 나오지 않을 경우 사용.
+
+  
+
+  - width / height 속성 : 숫자를 속성의 값으로 받는다.
+
+    width 가로 길이
+
+    height 높이 길이
+
+- 웹에서 사용하는 이미지 유형
+
+  래스터 이미지 `JPEG` `PNG` `GIF` `WEBP` : 배경이나 사진
+
+  백터 이미지 `SVG` : 아이콘이나 그래프, UI 요소에 사용
+
+  | abbreviation | MIME type       | File extension(s)                      | Summary                                                      |
+  | ------------ | --------------- | -------------------------------------- | ------------------------------------------------------------ |
+  | JPEG         | `image/jpeg`    | `.jpg` `.jpeg` `.jfif` `.pjpeg` `.pjp` | 정지 이미지의 손실 압축에 적합 (현재 가장 많이 사용)         |
+  | PNG          | `image/png`     | `.png`                                 | PNG는 원본 이미지를 보다 정확하게 보여주거나 **투명도**가 필요한 경우 JPEG보다 선호 |
+  | GIF          | `image/gif`     | `.gif`                                 | 여러장의 이미지로 이루어진 애니메이션 표현                   |
+  | WEBP         | `image/webp`    | `.webp`                                | 구글이 만든 이미지 포맷, 품질, 압축률 등이 우수하지만 지원 브라우저가 제한적 |
+  | SVG          | `image/svg+xml` | `.svg`                                 | 다양한 크기로 정확하게 그려야 하는 아이콘, 다이어그램 등에 사용 |
+
+
+
+
+### 반응형 이미지
+
+### Image
+
+- srcset(viewport에 따라서 변경, 반응형)
+
+  사용자 에이전트가 사용할 수 있는 이미지 소스의 후보, 쉼표로 구분하는 한개 이상의 문자열 목록
+
+  1. 이미지의 URL
+
+  2. 선택적으로, 공백을 넣고 너비 서술자와 픽셀 밀도 서술자를 넣는다.
+
+     ```html
+     <img
+          src="image/large.png"
+          srcset="image/small.png 300W,
+     			image/medium.png 450W,
+                  image/large.png 600W,"
+          alt="responsive images"
+      />
+     ```
+
+- sizes
+
+  소스 크기를 나타내는, 쉼표로 구분한 하나 이상의 문자열. (고정)
+
+  1. 미디어 조건. 마지막 항목에서는 생략
+
+  2. 소스 크기의 값 min-width / max-width
+
+     ```html
+     <img
+          src="image/large.png"
+          srcset="image/small.png 300W,
+     			image/medium.png 450W,
+                  image/large.png 600W,"
+          sizes="(min-width: 600px) 600px,
+                 (min-width: 450px) 450px,
+                 300px"
+          alt="responsive images"
+      />
+     ```
+
+### Video
+
+- `<video>` `</video>` 비디오 태그는 이미지 태그와 다르게 닫는 태그가 존재함
+
+  태그 내부에 autoplay 를 추가하면 자동으로 재생 가능함(갑자기 소리가 나는 것을 방지하기 위해 muted 속성을 함께 사용)
+
+  태그 내부에 controls 를 추가하여, 재생바와 소리 조절등이 가능함
+
+  poster 속성을 사용하면 썸네일 이미지를 사용 할 수 있음.
+
+  ```html
+  <videc src="video/20210901.mp4">
+      Sorry, your browser doesn't support embedded videos.
+  </videc>
+  
+  <videc>
+      <source src="video/20210901.mp4">
+      Sorry, your browser doesn't support embedded videos.
+  </videc>
+  ```
+
+
+
+### Audio
+
+- `<audio>` `</audio>` 비디오와 비슷한 속성을 사용함.
+
+  figure 속성을 사용하고 controls 패널을 추가하여 하나의 묶음으로 사용할 수 있도록 하는 것을 추천
+
+  ```html
+  <figure>
+      <figcaption>Listen to the T-Rex:</figcaption>
+      <audio
+          controls
+          src="/media/cc0-audio/t-rex-roar.mp3">
+              Your browser does not support the
+              <code>audio</code> element.
+      </audio>
+  </figure>
+  ```
+
+
+
