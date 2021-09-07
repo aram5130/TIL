@@ -270,15 +270,66 @@ selector	h1 {
    }
    ```
 
-2. [link] 
+2. [link] / [visited]
 
-   특정 타입의 요소 대상(숫자)를 선택
+   특정 타입의 요소 대상(숫자)를 선택하여 컬러를 넣어줌
+
+   link : 방문하지 않은 링크에 설정한 컬러가 노출
+
+   visited : 방문한 링크에 설정한 컬러가 노출
 
    ```css
-   li:nth-of-type(3) {
-       color: yellow;
+   a:link {
+       color: tomato;
+   }
+   a:visited {
+       color: yellowgreen;
    }
    ```
 
-3. 
+3. [hover] / [active] / [focus]
+
+   hover : 마우스를 올리면 지정한 스타일링으로 변경
+
+   active : 마우스를 클릭하고 있을 때(활성화), 지정한 스타일링으로 변경
+
+   ​			(:link, :visited, :hover)의 순서로 적용
+
+   focus : 특정 요소에 포커싱이 되었을 때, 지정한 스타일링이 적용된다.
+
+   ​			탭키를 사용하여 지정하거나, 입력하기 위해 선택했을때
+
+   ```css
+   input[type="button"]:hover {
+       background: teal;
+   }
+   input[type="button"]:active {
+   	background: red; 
+   }
+   input[type="button"]:focus {
+   	background: blue; 
+   }
+   ```
+
+4. [enabled] / [disabled] / [checked] 
+
+   enabled : 활성화 되어있는 요소들에 스타일링을 지정.
+
+   disabled : 비활성화 되어있는 요소들에 스타일링을 지정.
+
+   checked : 체크되어 있는 요소에 스타일링을 지정. (radio, checkbox에 사용 가능)
+
+   ```css
+   input[type="text"]:enabled {
+       background-color: skyblue;
+   }
+   input[type="text"]:disabled {
+   	background: tomato; 
+   }
+   input[type="radio"]:checked {
+   	outline: 2px solid red;
+   }
+   ```
+
+   
 
