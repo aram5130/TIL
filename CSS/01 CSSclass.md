@@ -186,9 +186,7 @@ selector	h1 {
      }
      ```
 
-- 가상 클래스 선택자
-
-  Pseudo-Class selector(가상 클래스 선택자)
+  #### Pseudo-Class selector(가상 클래스 선택자)
 
   1. [first-child]
 
@@ -219,6 +217,7 @@ selector	h1 {
          color: hotpink;
      }
      ```
+
 
 ------
 
@@ -332,4 +331,133 @@ selector	h1 {
    ```
 
    
+
+   2021.09.08
+
+   ------
+
+   #### Pseudo-Element Selector (가상 요소 선택자)
+
+   1. [before] / [after]
+
+      before : 존재하지 않는 가상의 요소(content)에 적용되어 있음. 단순하게 꾸미기 위한 가상요소로 텍스트로 인식되지 않음. (드래그 불가), 앞에 위치
+
+      after : before 와 동일한 기능, 뒤에 위치
+
+      ```css
+      .movie::before {
+          content: 'MOVIE';
+          color : teal;
+      }
+      .favorite::before {
+          content: '💛';
+          color : teal;
+      }
+      ```
+
+   2. [first-letter] / [first-line] / [selection]
+
+      first-letter : 첫번째 글자에 스타일링 적용.
+
+      first-line : 브라우저에서 보이는 첫번째 줄에 스타일링 적용.
+
+      selection : 드래그 하면 적용된 스타일링이 나타남.
+
+      ```css
+      .lorem::first-letter {
+          color: red;
+          font-size: 30pt;
+      }
+      .lorem_two::first-line {
+          color: red;
+          font-size: 30pt;
+      }
+      .lorem_::selection {
+          color: white;
+          background-color: blue;
+      }
+      ```
+
+   
+
+   #### Selector Combination (선택자 결합)
+
+   1. 하위 선택자 결합(공백) : 두가지 요소를 선택해서 사용, 스페이싱을 사용해서 구분.
+
+      전체 문서가 아닌 입력한 요소로 범위가 좁혀짐.
+
+      ```css
+      ul li:last-of-type {
+          color: red;
+      }
+      ```
+
+   2. 자식 선택자 결합(>) : 바로 아래의 하위(자식) 요소를 선택
+
+      ```css
+      #list > li:last-of-type {
+          color: tomato;
+      }
+      ```
+
+   3. 형제 선택자 결합 : 
+
+      - 일반 형제 선택자 결합 (~) : 지정한 요소의 아래에 위치한 요소를 지정.
+
+        ```css
+        .code ~ selector {
+            color: teal;
+        }
+        ```
+
+      - 인접 형제 선택자 결합 (+) : 바로 앞뒤에 있는 (붙어있는) 요소를 지정.
+
+        ```css
+        .red + div {
+            color: yellow;
+        }
+        ```
+
+   4. 그룹화(,) : 여러개를 한번에 적용시킬때
+
+      ```css
+      p, div, #list_a {
+          color: yellowgreen;
+          font-size: 25pt;
+      }
+      ```
+
+   
+
+   #### Universal Selector  (범용선택자)
+
+    범용 선택자 (*) : 전체를 지정, 주로 css 초기화를 할때 사용했었음.
+
+   ```CSS
+   * {
+       magin: 0 auto;
+   }
+   ```
+
+   
+
+   #### 상속 제어하기
+
+   1. initial  : 부모로부터 상속받을 값이 없을 때, 브라우저 기본값으로 정함.
+
+   2. inherit : 부모로부터 상속받을 값이 있을 때, 부모와 같은 값을 받음.
+
+      ```css
+      #parnet2 * {
+          all: inherit;
+      }
+      ```
+
+   3. unset : 속성을 자연스러운 값으로 초기화 함.
+
+      *참고해서 좀 더 공부해보기*
+
+      [https://developer.mozilla.org/ko/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance]: 
+
+      
 
