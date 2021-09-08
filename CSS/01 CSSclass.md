@@ -443,7 +443,7 @@ selector	h1 {
 
    #### 상속 제어하기
 
-   1. initial  : 부모로부터 상속받을 값이 없을 때, 브라우저 기본값으로 정함.
+   1. initial  : 부모로부터 상속받을 값이 없을 때, 브라우저 기본 값으로 받음.
 
    2. inherit : 부모로부터 상속받을 값이 있을 때, 부모와 같은 값을 받음.
 
@@ -453,11 +453,33 @@ selector	h1 {
       }
       ```
 
-   3. unset : 속성을 자연스러운 값으로 초기화 함.
+   3. unset : 속성을 자연스러운 값으로 초기화 함. 자연적으로 상속이 되면 상속 값을 받고, 그렇지 않으면 브라우저 기본값을 받음.
 
-      *참고해서 좀 더 공부해보기*
+      **참고해서 좀 더 공부해보기**
 
       [https://developer.mozilla.org/ko/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance]: 
 
-      
+##### 우선순위
+
+1. 선언된 곳
+
+2. 명시도 (!!적용범위가 적을수록 명시도가 높은 것!!)
+
+   ```
+   !important (가장 강력한 우선 순위, 아래로 갈수록 명시도가 약함)
+   ↓
+   inline style
+   ↓
+   ID
+   ↓
+   Class / Attribute / Pseudo Class
+   ↓
+   Type (tag)
+   ↓
+   (*)
+   ↓
+   inherited
+   ```
+
+3. 코드 위치
 
