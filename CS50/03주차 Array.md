@@ -18,7 +18,7 @@ main이라는 함수는 프로그램의 시작점으로써 **실행 버튼을 �
 
 printf는 출력을 담당하는 함수로, stdio.h 라는 라이브러리가 필요함.
 
-studio.h는 헤더 파일로 C언어오 작성되어 있으면 파일명이 .h 로 끝나는 파일. 이 파일에는 printf 함수의 프로토타입이 있어서 Clang 컴파일러가 프로그램을 컴파일할때 printf가 무엇인지 알려주는 역할을 한다.
+studio.h는 헤더 파일로 C언어로 작성되어 있으면 파일명이 .h 로 끝나는 파일. 이 파일에는 printf 함수의 프로토타입이 있어서 Clang 컴파일러가 프로그램을 컴파일할때 printf가 무엇인지 알려주는 역할을 한다.
 
 
 
@@ -303,6 +303,160 @@ float average (int length, int array[])
 배열의 크기를 사용자에게 직접 입력 받고, 배열의 크기만큼 루프를 돌면서 각 인덱스에 해당하는 값을 역시 사용자에게 동적으로 입력 받아 저장한다. 그리고 average 라는 함수를 따로 선언하여 평균을 구한다.
 
 average 함수는 length 와 array[], 즉 배열의 길이와 배열을 입력으로 받고, 함수 안에서는 배열의 길이만큼 루프를 돌면서 값의 합을 구하고 최종적으로 평균값을 반환한다.
+
+
+
+2021.09.30
+
+------
+
+#### 문자열과 배열
+
+문자열(string) 자료형의 데이터는 문자(char) 자료형의 데이터들의 배열이다. **string s = “HI!”;** 과 같이 문자열 s가 정의되어 있다고 한다면,  s는 문자의 배열이기 때문에 메모리상에 아래와 같이 저장되고, 인덱스로 각 문자에 접근할 수 있다.
+
+|  H   |  I   |  !   |  \0  |
+| :--: | :--: | :--: | :--: |
+| s[0] | s[1] | s[2] | s[3] |
+
+가장 끝의 **‘\0’**은 문자열의 끝을 나타내는 널 종단 문자.
+
+```c
+#include <cs50.h>
+#include <stdio.h>
+
+string names[4];
+
+names[0] = "EMMA";
+names[1] = "RODRIGO";
+names[2] = "BRIAN";
+names[3] = "DAVID";
+
+printf("%s\n", names[0]);
+printf("%c%c%c%c\n", names[0][0], names[0][1], names[0][2], names[0][3]);
+```
+
+ames라는 문자열 형식의 배열에 네 개의 이름이 저장되어있다고 한다면, 첫 번째 printf에서는 names의 첫번째 인덱스의 값, 즉 “EMMA”를 출력.
+
+두 번째 printf에서는 형식 지정자가 %s가 아닌 %c로 설정되어 있음을 확인할 수 있다. 따라서 출력하는 것은 문자열이 아닌 문자로, 각 이름의 두번째 문자를 출력한다. names[0] [1] 과 같이 2차원 배열을 통해 접근할 수 있다. 즉, names[0] [1]는 names의 첫 번째 값, “EMMA”라는 문자열에서, 그 두번째 값, ‘M’ 이라는 문자를 의미.
+
+|      E       |      M       |      M       |      A       |      \0      |
+| :----------: | :----------: | :----------: | :----------: | :----------: |
+| names[0] [0] | names[0] [1] | names[0] [2] | names[0] [3] | names[0] [4] |
+
+
+
+#### 문자열의 활용
+
+- 문자열의 길이 및 탐색
+
+  ```c
+  #include <cs50.h>
+  #include <stdio.h>
+  #include <string.h>
+  
+  int main(void)
+  {
+      string s = get_string("Input: ");
+      printf("Output:\n");
+      for (int i = 0, n = strlen(s); i < n; i++)
+      {
+          printf("%c\n", s[i]);
+      }
+  }
+  ```
+
+  strlen은 문자열의 길이를 알려주는 합수로, string.h 라이브러리 안에 포함되어있다.
+
+  위의 코드에서는 n이라는 변수에 문자열 s의 길이를 저장하고, 해당 길이 만큼만 for 루프를 순환한다. 일일이 널 종단 문자를 검사하는 것보다 훨씬 효율적이다.
+
+- 문자열의 탐색 및 수정
+
+  아래와 같이 사용자로부터 문자열을 입력받아 대문자로 바꿔주는 프로그램을 작성할 수 있다.
+
+  ```c
+  #include <cs50.h>
+  #include <stdio.h>
+  #include <string.h>
+  
+  int main(void)
+  {
+      strign s = get_string("Before: ");
+      printf("After: ");
+      for (int i = 0, n = strlen(s); i < n; i++)
+      {
+          if (s[i] >= 'a' && s[i] <='z')
+          {
+              printf("%c", s[i] -32);
+          }
+          else
+          {
+              printf("%c", s[i]);
+          }
+      }
+      printf("\n");
+  }
+  ```
+
+  1. 사용자로부터 입력받을 문자를 s라는 변수에 저장.
+
+  2. s의 길이만크 for 루프를 돌면서, 각 인덱스에 해당하는 문자가 'a'보다 크고 'z'보다 작은지 검사한다. 즉, 소문자인지 검사하는 것과 동일
+
+     문자의 대소비교가 가능한 이유는 ASCII값, 문자가 정의되는 ASCII 코드 상에서 숫자값으로 비교할 수 있기 때문이다.
+
+     알파벳 ASCII값을 살펴보면 알파벳의 소문자, 대문자는 32씩 차이가 나는 것을 확인할 수 있다. 소문자인 경우 그 값에서 32를 빼고 '문자'형태로 출력하면 대문자가 출력된다.
+
+  동일한 작업을 수행하는 함수가 ctype 라이브러리에 toupper( ) 이라는 함수로 정의 되어 있다. ctype 라이브러리를 이용하면 간단하게 대문자 변환 프로그램을 작성할 수 있다.
+
+  ```c
+  #include <cs50.h>
+  #include <ctype.h>
+  #include <stdio.h>
+  #include <string.h>
+  
+  int main(void)
+  {
+      string s = get_string("Before: ");
+      printf("After:  ");
+      for (int i = 0, n = strlen(s); i < n; i++)
+      {
+          printf("%c", toupper(s[i]));
+      }
+      printf("\n");
+  }
+  ```
+
+
+
+#### 명령행 인자
+
+main의 형태를 보면 하나의 함수라는 것을 알 수 있다. main( )안에 void 만 사용하는 것이 아닌 아래 코드 같이 argc, argv를 정의할 수 있다.
+
+```c
+#include <cs50.h>
+#include <stdio.h>
+
+int main (int argc, string argv[])
+{
+    if (argc == 2)
+    {
+        printf("hello, %s\n", argv[1]);
+    }
+    else
+    {
+        printf("hello, world\n");
+    }
+}
+```
+
+첫번째 변수 **argc**는 main 함수가 받게 될 입력의 개수를 나타낸다.
+
+**argv[ ]**는 그 **입력이 포함되어 있는 배열**이다. 프로그램을 명령행에서 실행하므로, 입력은 문자열로 주어진다.
+
+**argv[0]**는 기본적으로 **프로그램의 이름**으로 저장된다. 만약 하나의 입력이 더 주어진다면 argv[1]에 저장될 것이다.
+
+예를 들어 위 프로그램 "arg.c"라는 이름으로 저장하고 컴파일 한 후, **"./argc"**로 실행하면 명령행 인자에 주어진 값이 프로그램 이름 하나밖에 없기 때문에 "hello, world"라는 값이 출력된다.
+
+하지만 **“./argc David”**로 실행해보면 “hello, David”라는 값이 출력되는데, 명령행 인자에 David라는 값이 추가로 입력되었고, 따라서 argc 는 2, argv[1] 은 “David”가 되기 때문이다.
 
 
 
